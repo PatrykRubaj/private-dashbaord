@@ -1,14 +1,15 @@
-using Core.DataAccess;
-using Microsoft.EntityFrameworkCore;
-
 namespace Core;
+
+using DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var connectionString = builder.Configuration.GetConnectionString("DashboardDatabase");
+        var connectionString = builder.Configuration.GetConnectionString("DashboardDatabase") 
+                               ?? throw new InvalidOperationException("Connection string 'DashboardDatabase' not found.");
         
         // Add services to the container.
         builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connectionString));
@@ -21,6 +22,6 @@ public class Program
         app.UseAuthorization();
         app.MapControllers();
         
-        app.Run();
+        await app.RunAsync();
     }
 }
