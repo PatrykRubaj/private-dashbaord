@@ -1,6 +1,7 @@
-@Core_HostAddress = http://localhost:5134
+@Core_HostAddress = https://localhost:7246
 
-GET {{Core_HostAddress}}/weatherforecast/
+### GET Task Categories
+GET {{Core_HostAddress}}/taskcategory/
 Accept: application/json
 
 ###

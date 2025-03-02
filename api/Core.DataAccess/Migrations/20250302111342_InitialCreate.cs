@@ -13,20 +13,20 @@ namespace Core.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TaskCategories",
+                name: "task_categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Position = table.Column<int>(type: "integer", nullable: false),
-                    StartTime = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
-                    EndTime = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
-                    OwnerId = table.Column<int>(type: "integer", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: false),
+                    position = table.Column<int>(type: "integer", nullable: false),
+                    start_time = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
+                    end_time = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
+                    owner_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskCategories", x => x.Id);
+                    table.PrimaryKey("pk_task_categories", x => x.id);
                 });
         }
 
@@ -34,7 +34,7 @@ namespace Core.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TaskCategories");
+                name: "task_categories");
         }
     }
 }

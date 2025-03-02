@@ -11,4 +11,9 @@ public class DataContext : DbContext
     {
         
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSnakeCaseNamingConvention();
+    }
 }
