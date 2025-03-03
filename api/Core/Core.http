@@ -1,7 +1,43 @@
-@Core_HostAddress = https://localhost:7246
+@ApiAddress = https://localhost:7246
+@loginEmail = admin@admin.com
+@loginPassword = Admin123$
+
+### Create new user
+POST {{ApiAddress}}/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "Admin123$"
+}
+
+### Login existing user
+POST {{ApiAddress}}/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "{{loginEmail}}",
+  "password": "{{loginPassword}}"
+}
 
 ### GET Task Categories
-GET {{Core_HostAddress}}/taskcategory/
+GET {{ApiAddress}}/taskcategory/
 Accept: application/json
 
-###
+### GET Task by id
+GET {{ApiAddress}}/task/1
+Accept: application/json
+
+### Create new Task Category
+POST {{ApiAddress}}/taskcategory/
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer CfDJ8K3GwWKt1_hEgMxDD_YAKnvayjOOBH-1OdxosX98lMnTrGCkKN4Mhy04D5LFP39UAk2PiTFQEGyikiDSbdKngTi5fdEk1NLeR3Ge_1ZTzkKBo-FvgHB3GDybNSe8W22wmXM-X3rEHCVohAHNbiXccAUfTCormgc6QgT-5egqld87II8AGHfbbWH0LLZDaidlatiGG545CfMRpGXIIITsk5X43IidnUh_SOLbml6gb1kE3ZGoD7o8z__XcyiXDt3akWNpoNVu_RWIUgwFHhNhLVBB9REmL7fJwbsxy6PrVsCtqiXHRVPExkBs9Wc-BJ6d-1Z3xwWMQmEVIav5KOVrR_uLZwMFzFm2zBq_md4_z8Yw44RtJgqFksKTzd_U7BTUoVRPw_oUEnpXdYSdxArTOYUX-rfc7QJR0S5jmOJAogq2nTu19n6q1Swvdd-1Vw4NEdF3tXLACRhDXkPiIRDUF9dPUUmCG_XxML2yq901ortdVJvaehDheP-uHVg992LBU5ugMPsxSYgiPvS4XZdk9K67Ea-2jh_QDH_faV4AASZVheHuMqmKUwt2pfqQBIRNfNkNUwb8OZXtXP8msfVpMTddhxIewc3C5DTTp562k1xQM74HDmNYXk0KzxFrcrTasZA2Uz-skbCpHUYPDqBcgOg-idHXPFXAkvBljV1n8Wruj-D7DaYB1_rXtJ5fGc8UoQ
+
+{
+  "categoryName": "Test 2",
+  "startTime": "08:00:00",
+  "endTime": "13:00:00"
+}

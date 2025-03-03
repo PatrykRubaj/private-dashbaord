@@ -1,5 +1,7 @@
 ﻿using Core.DataAccess;
 using Core.Model;
+using Core.Model.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,5 +29,24 @@ public class TaskCategoryController: ControllerBase
     public async Task<ActionResult<IList<TaskCategory>>> GetAll()
     {
         return await _dataContext.TaskCategories.ToListAsync();
-    } 
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<ActionResult> Add([FromBody] TaskCategoryAddDto taskCategory)
+    {
+        var newTaskCategory = new TaskCategory()
+        {
+            Name = taskCategory.CategoryName,
+            StartTime = taskCategory.StartTime,
+            EndTime = taskCategory.EndTime,
+            OwnerId = 1
+        };
+        
+        await _dataContext.TaskCategories.AddAsync(newTaskCategory);
+
+        await _dataContext.SaveChangesAsync();
+        
+        return Ok(newTaskCategory);
+    }
 }
