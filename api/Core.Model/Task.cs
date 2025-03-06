@@ -7,7 +7,7 @@ public class Task
     public WeekDay DaysOfTheWeek { get; set; }
     public int TaskCategoryId { get; set; }
     public int Position { get; set; }
-    public int OwnerId { get; set; }
+    public required string OwnerId { get; set; }
     
     public required TaskCategory TaskCategory { get; set; }
     
