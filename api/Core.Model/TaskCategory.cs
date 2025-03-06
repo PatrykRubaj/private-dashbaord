@@ -7,7 +7,7 @@ public class TaskCategory
     public int Position { get; set; }
     public TimeOnly? StartTime { get; set; }
     public TimeOnly? EndTime { get; set; }
-    public int OwnerId { get; set; }
+    public required string OwnerId { get; set; }
 
     public ICollection<Task> Tasks { get; set; } = new List<Task>();
 }
