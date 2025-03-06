@@ -10,5 +10,4 @@ public class Task
     public required string OwnerId { get; set; }
     
     public required TaskCategory TaskCategory { get; set; }
-    
 }
