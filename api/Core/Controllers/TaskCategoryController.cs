@@ -44,7 +44,7 @@ public class TaskCategoryController: ControllerBase
     public async Task<ActionResult> Add([FromBody] TaskCategoryAddDto taskCategory)
     {
         var userId = _userManager.GetUserId(User) ?? throw new NoNullAllowedException();
-        
+
         var newTaskCategory = new TaskCategory()
         {
             Name = taskCategory.CategoryName,
@@ -52,6 +52,29 @@ public class TaskCategoryController: ControllerBase
             EndTime = taskCategory.EndTime,
             OwnerId = userId
         };
+        
+        if (taskCategory.Position != null) 
+        {
+            var taskCategoriesAfterTheNewOne =
+                _dataContext.TaskCategories.Where(tc => tc.Position >= taskCategory.Position && tc.OwnerId == userId);
+
+            foreach (var resortedTaskCategory in taskCategoriesAfterTheNewOne)
+            {
+                resortedTaskCategory.Position += 1;
+            }
+
+            newTaskCategory.Position = (int)taskCategory.Position;
+        }
+        else
+        {
+            if (await _dataContext.TaskCategories.AnyAsync(x=> x.OwnerId == userId))  
+            {
+                newTaskCategory.Position =
+                    await _dataContext.TaskCategories.Where(tc => tc.OwnerId == userId).MaxAsync(tc => tc.Position) + 1;
+            }
+        }
+        
+        
         
         await _dataContext.TaskCategories.AddAsync(newTaskCategory);
 
