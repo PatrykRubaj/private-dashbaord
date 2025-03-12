@@ -42,7 +42,7 @@ public class TaskCategoryController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] TaskCategoryAddDto taskCategory)
+    public async Task<ActionResult<TaskCategory>> Add([FromBody] TaskCategoryAddDto taskCategory)
     {
         var userId = _userManager.GetUserId(User) ?? throw new NoNullAllowedException();
 
