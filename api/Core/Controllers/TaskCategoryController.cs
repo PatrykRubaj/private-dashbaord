@@ -12,7 +12,7 @@ namespace Core.Controllers;
 [ApiController]
 [Authorize]
 [Route("[controller]")]
-public class TaskCategoryController: ControllerBase
+public class TaskCategoryController : ControllerBase
 {
     private readonly DataContext _dataContext;
     private readonly UserManager<IdentityUser> _userManager;
@@ -27,7 +27,7 @@ public class TaskCategoryController: ControllerBase
     public async Task<ActionResult<TaskCategory>> GetById(int id)
     {
         var userId = _userManager.GetUserId(User) ?? throw new NoNullAllowedException();
-        
+
         var result = await _dataContext.TaskCategories.FirstOrDefaultAsync(tc => tc.Id == id && tc.OwnerId == userId);
         return result == null ? NotFound() : Ok(result);
     }
@@ -36,8 +36,9 @@ public class TaskCategoryController: ControllerBase
     public async Task<ActionResult<IList<TaskCategory>>> GetAll()
     {
         var userId = _userManager.GetUserId(User) ?? throw new NoNullAllowedException();
-        
-        return await _dataContext.TaskCategories.Where(tc => tc.OwnerId == userId).ToListAsync();
+
+        return await _dataContext.TaskCategories.Where(tc => tc.OwnerId == userId).OrderBy(tc => tc.Position)
+            .ToListAsync();
     }
 
     [HttpPost]
@@ -52,8 +53,8 @@ public class TaskCategoryController: ControllerBase
             EndTime = taskCategory.EndTime,
             OwnerId = userId
         };
-        
-        if (taskCategory.Position != null) 
+
+        if (taskCategory.Position != null)
         {
             var taskCategoriesAfterTheNewOne =
                 _dataContext.TaskCategories.Where(tc => tc.Position >= taskCategory.Position && tc.OwnerId == userId);
@@ -67,19 +68,18 @@ public class TaskCategoryController: ControllerBase
         }
         else
         {
-            if (await _dataContext.TaskCategories.AnyAsync(x=> x.OwnerId == userId))  
+            if (await _dataContext.TaskCategories.AnyAsync(x => x.OwnerId == userId))
             {
                 newTaskCategory.Position =
                     await _dataContext.TaskCategories.Where(tc => tc.OwnerId == userId).MaxAsync(tc => tc.Position) + 1;
             }
         }
-        
-        
-        
+
+
         await _dataContext.TaskCategories.AddAsync(newTaskCategory);
 
         await _dataContext.SaveChangesAsync();
-        
+
         return Ok(newTaskCategory);
     }
 }
