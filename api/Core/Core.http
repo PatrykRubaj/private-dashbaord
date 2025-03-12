@@ -52,3 +52,13 @@ Authorization: Bearer {{AccessToken}}
   "startTime": "02:00:00",
   "endTime": "11:00:00"
 }
+
+### Update a Task Category
+PUT {{ApiAddress}}/taskcategory/18
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{AccessToken}}
+
+{
+  "categoryName": "Breakfast Patryk only"
+}

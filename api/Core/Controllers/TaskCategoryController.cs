@@ -82,4 +82,31 @@ public class TaskCategoryController : ControllerBase
 
         return Ok(newTaskCategory);
     }
+
+    [HttpPut("{taskCategoryId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<TaskCategory>> Update(int taskCategoryId,
+        [FromBody] TaskCategoryUpdateDto taskCategoryChanges)
+    {
+        var userId = _userManager.GetUserId(User) ?? throw new NoNullAllowedException();
+
+        var originalTaskCategory =
+            await _dataContext.TaskCategories.FirstOrDefaultAsync(x => x.OwnerId == userId && x.Id == taskCategoryId);
+
+        if (originalTaskCategory == null)
+        {
+            return NotFound();
+        }
+
+        //Currently can't clear StartTime and EndTime, because when they're null, the original value is used.
+        originalTaskCategory.Name = taskCategoryChanges.CategoryName ?? originalTaskCategory.Name;
+        originalTaskCategory.Position = taskCategoryChanges.Position ?? originalTaskCategory.Position;
+        originalTaskCategory.StartTime = taskCategoryChanges.StartTime ?? originalTaskCategory.StartTime;
+        originalTaskCategory.EndTime = taskCategoryChanges.EndTime ?? originalTaskCategory.EndTime;
+
+        await _dataContext.SaveChangesAsync();
+
+        return Ok(originalTaskCategory);
+    }
 }
