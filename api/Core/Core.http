@@ -62,3 +62,50 @@ Authorization: Bearer {{AccessToken}}
 {
   "categoryName": "Breakfast Patryk only"
 }
+
+### Create new Sleep Entry
+POST {{ApiAddress}}/sleepentry/
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{AccessToken}}
+
+{
+  "date": "2026-06-29",
+  "start": "2026-06-29T20:45:00Z",
+  "until": "2026-06-30T04:30:00Z",
+  "sleepHours": 7.4,
+  "sleepPercent": 88,
+  "rechargePercent": 80,
+  "remHours": 1.4,
+  "deepHours": 1.2,
+  "bpm": 53,
+  "sleepRating": 4.2
+}
+
+> {%
+    client.global.set("SleepEntryId", response.body.id);
+%}
+
+### GET Sleep Entry by ID
+GET {{ApiAddress}}/sleepentry/{{SleepEntryId}}
+Accept: application/json
+Authorization: Bearer {{AccessToken}}
+
+### GET Sleep Entries in a date range
+GET {{ApiAddress}}/sleepentry/range?From=2026-06-25&Until=2026-06-29
+Accept: application/json
+Authorization: Bearer {{AccessToken}}
+
+### GET Sleep Entries range - missing From (expect 400)
+GET {{ApiAddress}}/sleepentry/range?Until=2026-06-29
+Accept: application/json
+Authorization: Bearer {{AccessToken}}
+
+### GET Sleep Entries range - inverted range (expect 400)
+GET {{ApiAddress}}/sleepentry/range?From=2026-06-29&Until=2026-06-25
+Accept: application/json
+Authorization: Bearer {{AccessToken}}
+
+### Delete (soft-delete) a Sleep Entry
+DELETE {{ApiAddress}}/sleepentry/{{SleepEntryId}}
+Authorization: Bearer {{AccessToken}}
