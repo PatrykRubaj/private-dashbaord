@@ -4,20 +4,20 @@ public class SleepEntry
 {
     public int Id { get; set; }
     public required DateOnly Date { get; set; }
-    public required DateTime Start { get; set; }
-    public required DateTime Until { get; set; }
-    public required double SleepHours { get; set; }
-    public double? RechargePercent { get; set; }
-    public double? CreditPercent { get; set; }
-    public double? DebtPercent { get; set; }
-    public double? BalancePercent { get; set; }
-    public double? SleepPercent { get; set; }
-    public double? RemHours { get; set; }
-    public double? RemPercent { get; set; }
-    public double? DeepHours { get; set; }
-    public double? DeepPercent { get; set; }
-    public double? Bpm { get; set; }
-    public double? BpmPercent { get; set; }
-    public double? SleepRating { get; set; }
+    public required DateTimeOffset Start { get; set; }
+    public required DateTimeOffset Until { get; set; }
+    public required decimal SleepHours { get; set; }
+    public decimal? RechargePercent { get; set; }
+    public decimal? CreditPercent { get; set; }
+    public decimal? DebtPercent { get; set; }
+    public decimal? BalancePercent { get; set; }
+    public decimal? SleepPercent { get; set; }
+    public decimal? RemHours { get; set; }
+    public decimal? RemPercent { get; set; }
+    public decimal? DeepHours { get; set; }
+    public decimal? DeepPercent { get; set; }
+    public int? Bpm { get; set; }
+    public decimal? BpmPercent { get; set; }
+    public decimal? SleepRating { get; set; }
     public required string OwnerId { get; set; }
 }
