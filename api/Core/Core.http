@@ -1,4 +1,5 @@
-@ApiAddress = https://localhost:7246
+#@ApiAddress = https://localhost:7246
+@ApiAddress = http://localhost:5134
 @loginEmail = admin@admin.com
 @loginPassword = Admin123$
 
