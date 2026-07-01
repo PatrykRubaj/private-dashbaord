@@ -1,12 +1,20 @@
-﻿namespace Core.Model.DTO;
+using System.Globalization;
+
+namespace Core.Model.DTO;
 
 public class SleepEntryAddDto
 {
-    public required DateOnly Date { get; set; }
+    private const string DateTimeFormat = "M/d/yy HH:mm";
+    private const string DateFormat = "M/d/yy";
+    private const string OffsetFormat = "zzz";
 
-    public required DateTimeOffset Start { get; set; }
+    public required string DateString { get; set; }
 
-    public required DateTimeOffset Until { get; set; }
+    public required string StartString { get; set; }
+
+    public required string UntilString { get; set; }
+
+    public required string TimeZoneOffset { get; set; }
 
     public required decimal SleepHours { get; set; }
 
@@ -23,4 +31,36 @@ public class SleepEntryAddDto
     public int? Bpm { get; set; }
     public decimal? BpmPercent { get; set; }
     public decimal? SleepRating { get; set; }
+
+    public DateOnly Date => ParseDate(DateString);
+
+    public DateTimeOffset Start => ParseDateTimeOffset(StartString);
+
+    public DateTimeOffset Until => ParseDateTimeOffset(UntilString);
+
+    private TimeSpan Offset => DateTimeOffset
+        .ParseExact(TimeZoneOffset, OffsetFormat, CultureInfo.InvariantCulture)
+        .Offset;
+
+    private DateOnly ParseDate(string text)
+    {
+        var datePart = StripWeekday(text).Split(' ')[0];
+        return DateOnly.ParseExact(datePart, DateFormat, CultureInfo.InvariantCulture);
+    }
+
+    private DateTimeOffset ParseDateTimeOffset(string text)
+    {
+        var local = DateTime.ParseExact(
+            StripWeekday(text),
+            DateTimeFormat,
+            CultureInfo.InvariantCulture);
+
+        return new DateTimeOffset(local, Offset);
+    }
+
+    private static string StripWeekday(string text)
+    {
+        var space = text.IndexOf(' ');
+        return space < 0 ? text : text[(space + 1)..];
+    }
 }

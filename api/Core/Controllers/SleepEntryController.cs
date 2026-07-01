@@ -54,7 +54,7 @@ public class SleepEntryController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public async Task<ActionResult<SleepEntry>> Add([FromBody] SleepEntryAddDto sleepEntry)
+    public async Task<ActionResult<SleepEntry>> Add(SleepEntryAddDto sleepEntry)
     {
         var userId = _userManager.GetUserId(User) ?? throw new NoNullAllowedException();
 
@@ -69,8 +69,8 @@ public class SleepEntryController : ControllerBase
         var newSleepEntry = new SleepEntry
         {
             Date = sleepEntry.Date,
-            Start = sleepEntry.Start.ToUniversalTime(),
-            Until = sleepEntry.Until.ToUniversalTime(),
+            Start = sleepEntry.Start.UtcDateTime,
+            Until = sleepEntry.Until.UtcDateTime,
             SleepHours = sleepEntry.SleepHours,
             RechargePercent = sleepEntry.RechargePercent,
             CreditPercent = sleepEntry.CreditPercent,
