@@ -1,5 +1,7 @@
 using Core.DataAccess;
+using Core.JsonConverters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,7 +19,8 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connectionString));
-        builder.Services.AddControllers();
+        builder.Services.AddControllers()
+            .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new FlexibleDecimalConverter()));
         builder.Services.AddAuthorization();
         builder.Services.AddIdentityApiEndpoints<IdentityUser>()
             .AddEntityFrameworkStores<DataContext>();
