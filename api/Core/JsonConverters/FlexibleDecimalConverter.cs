@@ -25,19 +25,26 @@ public class FlexibleDecimalConverter : JsonConverter<decimal>
 
     private static decimal Parse(string text)
     {
-        var trimmed = text.Trim();
-        var lastDot = trimmed.LastIndexOf('.');
-        var lastComma = trimmed.LastIndexOf(',');
-        var separatorIndex = Math.Max(lastDot, lastComma);
-
-        if (separatorIndex < 0)
+        try
         {
-            return decimal.Parse(trimmed, ParseStyles, CultureInfo.InvariantCulture);
+            var trimmed = text.Trim();
+            var lastDot = trimmed.LastIndexOf('.');
+            var lastComma = trimmed.LastIndexOf(',');
+            var separatorIndex = Math.Max(lastDot, lastComma);
+
+            if (separatorIndex < 0)
+            {
+                return decimal.Parse(trimmed, ParseStyles, CultureInfo.InvariantCulture);
+            }
+
+            var head = trimmed[..separatorIndex].Replace(".", "").Replace(",", "");
+            var tail = trimmed[(separatorIndex + 1)..];
+
+            return decimal.Parse($"{head}.{tail}", ParseStyles, CultureInfo.InvariantCulture);
         }
-
-        var head = trimmed[..separatorIndex].Replace(".", "").Replace(",", "");
-        var tail = trimmed[(separatorIndex + 1)..];
-
-        return decimal.Parse($"{head}.{tail}", ParseStyles, CultureInfo.InvariantCulture);
+        catch (FormatException)
+        {
+            throw new JsonException($"Cannot parse '{text}' as a decimal.");
+        }
     }
 }

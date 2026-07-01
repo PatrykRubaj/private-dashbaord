@@ -32,4 +32,9 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Core.Model/Core.Model.csproj" />
+    <ProjectReference Include="../Core/Core.csproj" />
+  </ItemGroup>
+
 </Project>

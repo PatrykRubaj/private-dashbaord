@@ -41,7 +41,7 @@ public class SleepEntryAddDto
         .ParseExact(TimeZoneOffset, OffsetFormat, CultureInfo.InvariantCulture)
         .Offset;
 
-    private DateOnly ParseDate(string text)
+    internal DateOnly ParseDate(string text)
     {
         var local = DateTime.ParseExact(
             StripWeekday(text),
@@ -51,7 +51,7 @@ public class SleepEntryAddDto
         return DateOnly.FromDateTime(local);
     }
 
-    private DateTimeOffset ParseDateTimeOffset(string text)
+    internal DateTimeOffset ParseDateTimeOffset(string text)
     {
         var local = DateTime.ParseExact(
             StripWeekday(text),
