@@ -75,7 +75,6 @@ public class SleepEntryController : ControllerBase
             RechargePercent = sleepEntry.RechargePercent,
             CreditPercent = sleepEntry.CreditPercent,
             DebtPercent = sleepEntry.DebtPercent,
-            BalancePercent = sleepEntry.BalancePercent,
             SleepPercent = sleepEntry.SleepPercent,
             RemHours = sleepEntry.RemHours,
             RemPercent = sleepEntry.RemPercent,

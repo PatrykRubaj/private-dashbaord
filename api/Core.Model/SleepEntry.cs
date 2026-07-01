@@ -10,7 +10,6 @@ public class SleepEntry
     public decimal? RechargePercent { get; set; }
     public decimal? CreditPercent { get; set; }
     public decimal? DebtPercent { get; set; }
-    public decimal? BalancePercent { get; set; }
     public decimal? SleepPercent { get; set; }
     public decimal? RemHours { get; set; }
     public decimal? RemPercent { get; set; }
