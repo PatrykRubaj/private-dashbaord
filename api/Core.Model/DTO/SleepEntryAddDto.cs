@@ -4,8 +4,7 @@ namespace Core.Model.DTO;
 
 public class SleepEntryAddDto
 {
-    private const string DateTimeFormat = "M/d/yy HH:mm";
-    private const string DateFormat = "M/d/yy";
+    private const string DateTimeFormat = "d/M/yy, HH:mm";
     private const string OffsetFormat = "zzz";
 
     public required string DateString { get; set; }
@@ -44,8 +43,12 @@ public class SleepEntryAddDto
 
     private DateOnly ParseDate(string text)
     {
-        var datePart = StripWeekday(text).Split(' ')[0];
-        return DateOnly.ParseExact(datePart, DateFormat, CultureInfo.InvariantCulture);
+        var local = DateTime.ParseExact(
+            StripWeekday(text),
+            DateTimeFormat,
+            CultureInfo.InvariantCulture);
+
+        return DateOnly.FromDateTime(local);
     }
 
     private DateTimeOffset ParseDateTimeOffset(string text)
