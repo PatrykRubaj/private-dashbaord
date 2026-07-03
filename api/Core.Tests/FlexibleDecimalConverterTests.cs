@@ -1,6 +1,4 @@
-using System.Globalization;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Core.JsonConverters;
 
 namespace Core.Tests;
@@ -37,6 +35,7 @@ public class FlexibleDecimalConverterTests
         ["{\"V\":\"1234567.89\"}", 1234567.89m],
         ["{\"V\":\"-0.5\"}", -0.5m],
         ["{\"V\":\"12\"}", 12m],
+        ["{\"V\":\"1.300\"}", 1.3m],
     ];
 
     [Theory]
@@ -56,6 +55,7 @@ public class FlexibleDecimalConverterTests
         ["{\"V\":\"1234567,89\"}", 1234567.89m],
         ["{\"V\":\"-0,5\"}", -0.5m],
         ["{\"V\":\"3,4500\"}", 3.45m],
+        ["{\"V\":\"1,300\"}", 1.3m],
     ];
 
     [Theory]
