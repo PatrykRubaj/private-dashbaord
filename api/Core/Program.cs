@@ -1,5 +1,7 @@
 using Core.DataAccess;
 using Core.JsonConverters;
+using Core.Model.Options;
+using Core.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +26,10 @@ public class Program
         builder.Services.AddAuthorization();
         builder.Services.AddIdentityApiEndpoints<IdentityUser>()
             .AddEntityFrameworkStores<DataContext>();
+        builder.Services.AddHttpClient<IAirGradientClient, AirGradientClient>();
+        builder.Services.Configure<AirGradientOptions>(
+            builder.Configuration.GetSection(AirGradientOptions.SectionName));
+        builder.Services.AddHostedService<AirGradientPollingService>();
 
         var app = builder.Build();
 

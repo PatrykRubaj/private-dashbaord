@@ -3,6 +3,7 @@ using System;
 using Core.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Core.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20260703170742_AddAirGradient")]
+    partial class AddAirGradient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,16 +42,16 @@ namespace Core.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("nox_index");
 
-                    b.Property<decimal>("Pm01")
-                        .HasColumnType("numeric")
+                    b.Property<int>("Pm01")
+                        .HasColumnType("integer")
                         .HasColumnName("pm01");
 
-                    b.Property<decimal>("Pm02")
-                        .HasColumnType("numeric")
+                    b.Property<int>("Pm02")
+                        .HasColumnType("integer")
                         .HasColumnName("pm02");
 
-                    b.Property<decimal>("Pm10")
-                        .HasColumnType("numeric")
+                    b.Property<int>("Pm10")
+                        .HasColumnType("integer")
                         .HasColumnName("pm10");
 
                     b.Property<int>("Rco2")

@@ -10,6 +10,8 @@ public class DataContext : IdentityDbContext<IdentityUser>
     public DbSet<TaskCategory> TaskCategories { get; set; }
     public DbSet<Model.Task> Tasks { get; set; }
     public DbSet<SleepEntry> SleepEntries { get; set; }
+    public DbSet<Sensor> Sensors { get; set; }
+    public DbSet<AirQualityLog> AirQualityLogs { get; set; }
 
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
