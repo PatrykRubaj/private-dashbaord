@@ -26,11 +26,11 @@ public class AirQualityReadingMapperTests
             Pm01 = 3m,
             Pm02 = 9m,
             Pm10 = 8m,
-            Rco2 = 447,
+            Rco2 = 447m,
             Atmp = 24.47m,
             Rhum = 49m,
-            TvocIndex = 100,
-            NoxIndex = 1,
+            TvocIndex = 100m,
+            NoxIndex = 1m,
             Wifi = -46,
         };
 
@@ -44,11 +44,11 @@ public class AirQualityReadingMapperTests
         Assert.Equal(3m, dto.Pm01);
         Assert.Equal(9m, dto.Pm02);
         Assert.Equal(8m, dto.Pm10);
-        Assert.Equal(447, dto.Rco2);
+        Assert.Equal(447m, dto.Rco2);
         Assert.Equal(24.47m, dto.Atmp);
         Assert.Equal(49m, dto.Rhum);
-        Assert.Equal(100, dto.TvocIndex);
-        Assert.Equal(1, dto.NoxIndex);
+        Assert.Equal(100m, dto.TvocIndex);
+        Assert.Equal(1m, dto.NoxIndex);
         Assert.Equal(-46, dto.Wifi);
     }
 }

@@ -55,11 +55,11 @@ public class AirGradientClientTests
         Assert.Equal(9m, log!.Pm02);
         Assert.Equal(24.47m, log.Atmp);
         Assert.Equal(49m, log.Rhum);
-        Assert.Equal(447, log.Rco2);
+        Assert.Equal(447m, log.Rco2);
         Assert.Equal(3m, log.Pm01);
         Assert.Equal(8m, log.Pm10);
-        Assert.Equal(100, log.TvocIndex);
-        Assert.Equal(1, log.NoxIndex);
+        Assert.Equal(100m, log.TvocIndex);
+        Assert.Equal(1m, log.NoxIndex);
         Assert.Equal(-46, log.Wifi);
         Assert.Equal(1, log.SensorId);
     }

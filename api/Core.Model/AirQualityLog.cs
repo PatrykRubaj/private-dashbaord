@@ -9,10 +9,10 @@ public class AirQualityLog
     public decimal Pm01 { get; set; }
     public decimal Pm02 { get; set; }
     public decimal Pm10 { get; set; }
-    public int Rco2 { get; set; }
+    public decimal Rco2 { get; set; }
     public decimal Atmp { get; set; }
     public decimal Rhum { get; set; }
-    public int TvocIndex { get; set; }
-    public int NoxIndex { get; set; }
+    public decimal TvocIndex { get; set; }
+    public decimal NoxIndex { get; set; }
     public int Wifi { get; set; }
 }
