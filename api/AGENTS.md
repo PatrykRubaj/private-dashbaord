@@ -91,31 +91,31 @@ Here's a table which explains the values
 | Properties                        | Type    | Explanation                                                                            |
 |-----------------------------------|---------|----------------------------------------------------------------------------------------|
 | `serialno`                        | String  | Serial Number of the monitor                                                           |
-| `wifi`                            | Number  | WiFi signal strength                                                                   |
-| `pm01`                            | Number  | PM1.0 in ug/m3 (atmospheric environment)                                               |
-| `pm02`                            | Number  | PM2.5 in ug/m3 (atmospheric environment)                                               |
-| `pm10`                            | Number  | PM10 in ug/m3 (atmospheric environment)                                                |
-| `pm02Compensated`                 | Number  | PM2.5 in ug/m3 with correction applied (from fw version 3.1.4 onwards)                 |
-| `pm01Standard`                    | Number  | PM1.0 in ug/m3 (standard particle)                                                     |
-| `pm02Standard`                    | Number  | PM2.5 in ug/m3 (standard particle)                                                     |
-| `pm10Standard`                    | Number  | PM10 in ug/m3 (standard particle)                                                      |
-| `rco2`                            | Number  | CO2 in ppm                                                                             |
-| `pm003Count`                      | Number  | Particle count 0.3um per dL                                                            |
-| `pm005Count`                      | Number  | Particle count 0.5um per dL                                                            |
-| `pm01Count`                       | Number  | Particle count 1.0um per dL                                                            |
-| `pm02Count`                       | Number  | Particle count 2.5um per dL                                                            |
-| `pm50Count`                       | Number  | Particle count 5.0um per dL (only for indoor monitor)                                  |
-| `pm10Count`                       | Number  | Particle count 10um per dL (only for indoor monitor)                                   |
-| `atmp`                            | Number  | Temperature in Degrees Celsius                                                         |
-| `atmpCompensated`                 | Number  | Temperature in Degrees Celsius with correction applied                                 |
-| `rhum`                            | Number  | Relative Humidity                                                                      |
-| `rhumCompensated`                 | Number  | Relative Humidity with correction applied                                              |
-| `tvocIndex`                       | Number  | Senisiron VOC Index                                                                    |
-| `tvocRaw`                         | Number  | VOC raw value                                                                          |
-| `noxIndex`                        | Number  | Senisirion NOx Index                                                                   |
-| `noxRaw`                          | Number  | NOx raw value                                                                          |
-| `boot`                            | Number  | Counts every measurement cycle. Low boot counts indicate restarts.                     |
-| `bootCount`                       | Number  | Same as boot property. Required for Home Assistant compatability. (deprecated soon!)   |
+| `wifi`                            | Integer | WiFi signal strength                                                                   |
+| `pm01`                            | Decimal | PM1.0 in ug/m3 (atmospheric environment)                                               |
+| `pm02`                            | Decimal | PM2.5 in ug/m3 (atmospheric environment)                                               |
+| `pm10`                            | Decimal | PM10 in ug/m3 (atmospheric environment)                                                |
+| `pm02Compensated`                 | Decimal | PM2.5 in ug/m3 with correction applied (from fw version 3.1.4 onwards)                 |
+| `pm01Standard`                    | Decimal | PM1.0 in ug/m3 (standard particle)                                                     |
+| `pm02Standard`                    | Decimal | PM2.5 in ug/m3 (standard particle)                                                     |
+| `pm10Standard`                    | Decimal | PM10 in ug/m3 (standard particle)                                                      |
+| `rco2`                            | Decimal | CO2 in ppm                                                                             |
+| `pm003Count`                      | Decimal | Particle count 0.3um per dL                                                            |
+| `pm005Count`                      | Decimal | Particle count 0.5um per dL                                                            |
+| `pm01Count`                       | Decimal | Particle count 1.0um per dL                                                            |
+| `pm02Count`                       | Decimal | Particle count 2.5um per dL                                                            |
+| `pm50Count`                       | Decimal | Particle count 5.0um per dL (only for indoor monitor)                                  |
+| `pm10Count`                       | Decimal | Particle count 10um per dL (only for indoor monitor)                                   |
+| `atmp`                            | Decimal | Temperature in Degrees Celsius                                                         |
+| `atmpCompensated`                 | Decimal | Temperature in Degrees Celsius with correction applied                                 |
+| `rhum`                            | Decimal | Relative Humidity                                                                      |
+| `rhumCompensated`                 | Decimal | Relative Humidity with correction applied                                              |
+| `tvocIndex`                       | Decimal | Senisiron VOC Index                                                                    |
+| `tvocRaw`                         | Decimal | VOC raw value                                                                          |
+| `noxIndex`                        | Decimal | Senisirion NOx Index                                                                   |
+| `noxRaw`                          | Decimal | NOx raw value                                                                          |
+| `boot`                            | Integer | Counts every measurement cycle. Low boot counts indicate restarts.                     |
+| `bootCount`                       | Integer | Same as boot property. Required for Home Assistant compatability. (deprecated soon!)   |
 | `ledMode`                         | String  | Current configuration of the LED mode                                                  |
 | `firmware`                        | String  | Current firmware version                                                               |
 | `model`                           | String  | Current model name                                                                     |
