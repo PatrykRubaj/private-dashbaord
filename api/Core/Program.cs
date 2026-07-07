@@ -3,6 +3,7 @@ using Core.JsonConverters;
 using Core.Model.Options;
 using Core.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core;
@@ -27,6 +28,7 @@ public class Program
         builder.Services.Configure<AirGradientOptions>(
             builder.Configuration.GetSection(AirGradientOptions.SectionName));
         builder.Services.AddHostedService<AirGradientPollingService>();
+        builder.Services.AddOpenApi();
 
         var app = builder.Build();
 
@@ -35,6 +37,11 @@ public class Program
         app.MapIdentityApi<IdentityUser>();
         app.UseAuthorization();
         app.MapControllers();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.MapOpenApi();
+        }
 
         await app.RunAsync();
     }
