@@ -2,11 +2,8 @@ using Core.DataAccess;
 using Core.JsonConverters;
 using Core.Model.Options;
 using Core.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Core;
 

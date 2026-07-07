@@ -1,0 +1,13 @@
+{
+  "omnisharp-roslyn": {
+    "command": [
+      "roslyn-language-server",
+      "--stdio",
+      "--autoLoadProjects"
+    ],
+    "extensions": [".cs", ".csproj", ".sln"],
+    "env": {
+      "LSP_LOG": "debug"
+    }
+  }
+}

@@ -25,7 +25,7 @@ This project should use SOLID principles when possible. It should be a boring an
 # API Structure
 - `Core` project contains the controllers and main API application and configuration
   + `Core/Controllers` contains ASP.NET Core controllers / API endpoints
-- `Core.DataAcess` contains EF Core migrations and DataContext setup
+- `Core.DataAccess` contains EF Core migrations and DataContext setup
 - `Core.Model` contains the model
   + `Core.Model/DTO` directory contains DTOs
 - `Core.Tests` contains unit tests
